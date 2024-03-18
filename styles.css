@@ -1,0 +1,95 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to right, #8231e6,#4127a2);
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-weight: 500;
+    font-style: normal; /* Consistent font */
+}
+  
+.login-form {
+    display: inline-block;
+    width: 50%;
+    background: linear-gradient(to right, #8a55e3,#fff); /* White background for the form */
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 15px #1b8cefcc; /* Slight shadow effect */
+    width: 750px; /* Reasonable form width */
+}
+
+.login-form h1 {
+    margin-left: 400px;
+}
+
+.form-and-image {
+  display: flex; /* Allow side-by-side positioning */
+}
+
+.form-and-image img {
+  /* flex: 0 0 20%; Set width to 30% (adjust as needed) */
+  width: 300px;
+  height: 300px;
+  margin: 10px; /* Add margins for spacing */
+}
+
+.form-elements {
+  flex: 1; /* Take up remaining space */
+}
+  
+.form-elements input {
+    width: 90%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #817edd;
+    font-family: 'Kinfolk', sans-serif;
+}
+
+.form-elements input::placeholder {
+    font-family: "Truculenta", sans-serif; /* Font family */
+    font-size: 18px; /* Font size */
+    font-weight: 500; /* Font weight */
+    font-style: normal; /* Font style */
+    color: #5146ae;
+}
+  
+.form-elements button {
+    /* display: flex; */
+    width: 160px;
+    height: 40px;
+    padding: 15px;
+    background: linear-gradient(to left, #7d53d9,#a15af6);
+    color: white;
+    /* font-family: "Edu NSW ACT Foundation", cursive;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 18px; */
+    font-family: "Truculenta", sans-serif;
+    font-optical-sizing: 20;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+    font-size: 20px;
+    line-height: 10px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out; /* Smooth hover effect */
+}
+  
+.form-elements button:hover {
+    background-color: #69327e; /* Darker purple on hover */
+}
+  
+.form-elements a {
+    color: #2359c5d0; /* Light gray color for the forgot password link */
+    text-decoration: none; /* Remove underline from the link */
+    font-size: 14px;
+    display: block;
+    margin-top: 15px;
+}

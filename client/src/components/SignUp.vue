@@ -1,23 +1,29 @@
 <template>
-    <div class="body">
-        <!-- <div class="background_image"></div> -->
-        <div class="container">
-            <div>
-                <h1>Sign Up</h1>
-                <form @submit.prevent="generateOTP" class="register">
+    <div class="sign-up-container">
+        <div class="sign-up-form">
+            <div class="form-and-image">
+                <div class="purple-section">
+                    <img src="../assets/loginImage.jpg" alt="Login Image">
+                </div>
+                <div class="white-section">
+                    <div class="title-container">
+                        <h2>Welcome Back</h2>
+                    </div>
+                    <form @submit.prevent="generateOTP" class="form-elements">
                     <input type="text" required v-model="name" placeholder="Enter Name">
                     <input type="text" v-model="email" placeholder="Enter Email">
                     <input type="text" v-model="number" placeholder="Enter Phone Number" pattern="[0-9]{10}" title="Please enter a 10-digit phone number without any alphabets.">
                     <input type="password" v-model="password" placeholder="Enter Password">
                     <button @click="generateOTP">Generate OTP</button>
                     <input type="text" v-if="showField" v-model="otpInput" placeholder="Enter One Time Password">
-                    <button v-if="showField" @click="verifyOTP">Verify OTP</button>
+                    <button v-if="showField" @click="verifyOTP">Register</button>
 
                     <p>
                         Already have an account? 
                         <router-link to="/login">Login Here.</router-link>
                     </p>
                 </form>
+                </div>
             </div>
         </div>
     </div>
@@ -51,7 +57,7 @@ import axios from 'axios';
                 console.log(result)
                 if (result.status == 201){
                     localStorage.setItem("user-info", JSON.stringify(result.data))
-                    this.$router.push({name: 'Home'})
+                    this.$router.push({name: 'Dashboard'})
                 }
             },
             // sendOTP() {
@@ -62,6 +68,7 @@ import axios from 'axios';
                 if (this.otpInput ==  this.otp){
                     // logged in the user here
                     this.signUp();
+                    alert('Successfully Registered!')
                 }else{
                     alert('Wrong OTP entered');
                 }
@@ -87,7 +94,7 @@ import axios from 'axios';
         mounted() {
             let user = localStorage.getItem( "user-info");
             if (user) {
-                this.$router.push({name: 'Home'});
+                this.$router.push({name: 'Dashboard'});
             }
         },
     }
@@ -95,52 +102,109 @@ import axios from 'axios';
 </script>
 
 <style scoped>
-.logo{
-    width: 100px;
-}
-.container {
+.sign-up-container {
     display: flex;
-    justify-content: flex-end; /* Align items to the right */
-    margin-right: 100px; /* Adjust margin as needed */
-    margin-top: 100px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #8231e6, #5c1cda);
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }
-.register input{
-    width: 300px;
-    height: 40px;
-    padding-left: 20px;
-    display: block;
-    margin-bottom: 30px;
-    margin-right: auto;
-    margin-left: auto;
-    border: 1px solid skyblue;
+
+.sign-up-form {
+    border-radius: 20px;
+    padding: 30px;
+    width: 50%;
+    /* box-shadow: 0 10px 15px #1b8cefcc; */
 }
-.register button{
-    width: 320px;
-    height: 40px;
-    margin-bottom: 30px;
-    border: 1px solid wheat;
-    background-color: skyblue;
-    color: white;
-    font-size: 18px;
+
+.form-and-image {
+    display: flex;
+}
+
+.purple-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    background-color: #8a55e3;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 0 10px 15px #1b8cefcc;
+    margin-left: -30px;
+    margin-top: -30px;
+    margin-bottom: -30px;
+}
+
+.purple-section img {
+    width: 60%;
+    height: 65%;
+}
+
+.white-section {
+    width: 40%;
+    background-color: #fff;
+    border-radius: 0 20px 20px 0;
+    padding: 20px;
+    box-shadow: 0 10px 15px #1b8cefcc;
+    margin-right: -30px;
+    margin-top: -30px;
+    margin-bottom: -30px;
+}
+
+.form-elements {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.form-elements input,
+.form-elements button {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #817edd;
+    border-radius: 5px;
+}
+
+.form-elements input[type="text"],
+.form-elements input[type="password"] {
+    background-color: #fff;
+    width: 90%;
+}
+
+.form-elements input::placeholder {
+    color: #5146ae;
+}
+
+.form-elements button {
+    background: linear-gradient(to right, #5c1cda,#a15af6);
+    color: #fff;
     cursor: pointer;
+    width: 50%;
 }
-.body {
-    position: relative;
+
+.form-elements button:hover {
+    background-color: #69327e;
 }
-/* .background_image {
-    top: 0;
-    left: 0;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    background-image: url('../assets/image1.png');
-    background-size: cover; /* Cover the entire viewport */
-    /* background-position: center; Center the background image */
-    /* position: absolute;
-    z-index: -1; */
-    /* background-attachment: fixed; Keep the background image fixed while scrolling */
-    /* Additional background styles can be added here */
-    /* height: 100vh;
-    opacity:  .5;
-}  */
+
+.form-elements a {
+    color: #2359c5d0;
+    text-decoration: none;
+}
+
+.title-container {
+    margin-left: -20px;
+    margin-top: -20px;
+    background-color: #8a55e3;
+    border-radius: 0 20px 20px 0;
+    width: 60%;
+}
+
+.title-container h2 {
+  margin-bottom: 20px;
+  color: #fff;
+}
 </style>

@@ -1,28 +1,35 @@
 {
-    "users": [
-      {
-        "id": "1",
-        "name": "Deepanshu Dixit",
-        "email": "deepanshu6255@gmail.com",
-        "password": "deepanshu@123"
-      },
-      {
-        "id": "2",
-        "name": "Shalini Sharma",
-        "email": "salushalini09@gmail.com",
-        "password": "shalu@123"
-      },
-      {
-        "id": "3",
-        "name": "Aditya Nema",
-        "email": "adinema27@gmail.com",
-        "password": "nema@123"
-      },
-      {
-        "id": "4",
-        "name": "Mohit Chadhoker",
-        "email": "mohit04@gmail.com",
-        "password": "mohit@123"
-      }
-    ]
-  }
+  "users": [
+    {
+      "id": "1",
+      "name": "Deepanshu Dixit",
+      "email": "deepanshu6255@gmail.com",
+      "password": "deepanshu@123"
+    },
+    {
+      "id": "2",
+      "name": "Shalini Sharma",
+      "email": "salushalini09@gmail.com",
+      "password": "shalu@123"
+    },
+    {
+      "id": "3",
+      "name": "Aditya Nema",
+      "email": "adinema27@gmail.com",
+      "password": "nema@123"
+    },
+    {
+      "id": "4",
+      "name": "Mohit Chadhoker",
+      "email": "mohit04@gmail.com",
+      "password": "mohit@123"
+    },
+    {
+      "id": "dba0",
+      "name": "Ankita Mishra",
+      "email": "mishraankita3101@gmail.com",
+      "number": "9926511501",
+      "password": "ankita@123"
+    }
+  ]
+}

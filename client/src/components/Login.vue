@@ -1,30 +1,29 @@
 <template>
     <div class="login-container">
-      <div class="login-form">
-        
-        <div class="form-and-image">
-            <div class="purple-section">
-                <img src="../assets/loginImage.jpg" alt="Login Image">
-            </div>
-            <div class="white-section">
-                <div class="title-container">
-                    <h2>Welcome Back</h2>
+        <div class="login-form">       
+            <div class="form-and-image">
+                <div class="purple-section">
+                    <img src="../assets/loginImage.jpg" alt="Login Image">
                 </div>
-                <div class="form-elements">
-                    <input type="text" v-model="email" placeholder="Username" />
-                    <input type="password" v-model="password" placeholder="Password" />
-                    <button @click="login">Login</button>
-                    <a href="#">Forgot Password?</a>
-                    <p>
-                    Don't have an account?
-                    <router-link to="/sign-up">Create Account</router-link>
-                    </p>
+                <div class="white-section">
+                    <div class="title-container">
+                        <h2>Welcome Back</h2>
+                    </div>
+                    <div class="form-elements">
+                        <input type="text" v-model="email" placeholder="Username" />
+                        <input type="password" v-model="password" placeholder="Password" />
+                        <button @click="login">Login</button>
+                        <a href="#">Forgot Password?</a><br>
+                        <p>
+                        Don't have an account?
+                        <router-link to="/sign-up">Create Account</router-link>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-      </div>
     </div>
-  </template>
+</template>
   
 <script>
 import axios from 'axios';
@@ -65,7 +64,7 @@ import axios from 'axios';
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to right, #8231e6, #4127a2);
+    background: linear-gradient(to right, #8231e6, #5c1cda);
     font-family: "Barlow Semi Condensed", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -83,15 +82,21 @@ import axios from 'axios';
 }
 
 .purple-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 60%;
     background-color: #8a55e3;
     border-radius: 20px 0 0 20px;
     box-shadow: 0 10px 15px #1b8cefcc;
+    margin-left: -30px;
+    margin-top: -30px;
+    margin-bottom: -30px;
 }
 
 .purple-section img {
-    width: 80%;
-    height: auto;
+    width: 50%;
+    height: 65%;
 }
 
 .white-section {
@@ -100,11 +105,16 @@ import axios from 'axios';
     border-radius: 0 20px 20px 0;
     padding: 20px;
     box-shadow: 0 10px 15px #1b8cefcc;
+    margin-right: -30px;
+    margin-top: -30px;
+    margin-bottom: -30px;
 }
 
 .form-elements {
     display: flex;
     flex-direction: column;
+    justify-items: center;
+    align-items: center;
 }
 
 .form-elements input,
@@ -119,6 +129,7 @@ import axios from 'axios';
 .form-elements input[type="text"],
 .form-elements input[type="password"] {
     background-color: #fff;
+    width: 90%;
 }
 
 .form-elements input::placeholder {
@@ -126,9 +137,10 @@ import axios from 'axios';
 }
 
 .form-elements button {
-    background: linear-gradient(to left, #7d53d9,#a15af6);
+    background: linear-gradient(to right, #5c1cda,#a15af6);
     color: #fff;
     cursor: pointer;
+    width: 40%;
 }
 
 .form-elements button:hover {
