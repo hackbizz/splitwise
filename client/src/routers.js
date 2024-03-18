@@ -1,5 +1,6 @@
 import Dashboard from './components/Dashboard.vue';
 import SignUp from './components/SignUp.vue'
+// import SignUp from './components/TestSignUp.vue'
 import { createRouter, createWebHistory } from 'vue-router';
 import Login from './components/Login.vue';
 

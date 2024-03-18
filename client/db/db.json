@@ -30,6 +30,34 @@
       "email": "mishraankita3101@gmail.com",
       "number": "9926511501",
       "password": "ankita@123"
+    },
+    {
+      "id": "80c7",
+      "name": "Geeta Dixit",
+      "email": "geetapankaj72@gmail.com",
+      "number": "7539621485",
+      "password": "geeta@123"
+    },
+    {
+      "id": "49ef",
+      "name": "Pankaj",
+      "email": "dixitp74@gmail.com",
+      "number": "7539518524",
+      "password": "pankaj@123"
+    },
+    {
+      "id": "dd14",
+      "name": "Priyam",
+      "email": "priyam@gmail.com",
+      "number": "8521975344",
+      "password": "priyam@123"
+    },
+    {
+      "id": "9b24",
+      "name": "Arpit",
+      "email": "arpit@gmail.com",
+      "number": "7418529631",
+      "password": "asdf"
     }
   ]
 }

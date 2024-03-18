@@ -122,6 +122,7 @@ import axios from 'axios';
     margin-bottom: 20px;
     padding: 10px;
     border: none;
+    outline: none;
     border-bottom: 1px solid #817edd;
     border-radius: 5px;
 }
