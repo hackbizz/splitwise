@@ -9,11 +9,12 @@
                     <div class="title-container">
                         <h2>Welcome</h2>
                     </div>
-                    <form @submit.prevent="submitForm" class="form-elements" ref="signupForm">
+                    <form @submit.prevent="submitForm" class="form-elements" ref="signupForm" enctype="multipart/form-data">
                         <input type="text" required v-model="name" placeholder="Enter Name">
                         <input type="email" required v-model="email" placeholder="Enter Email">
                         <input type="tel" required v-model="number" placeholder="Enter Phone Number" pattern="[0-9]{10}" title="Please enter a 10-digit phone number without any alphabets.">
                         <input type="password" required v-model="password" placeholder="Enter Password">
+                        <input type="file" placeholder="Enter file" v-on:change=handleProfileImg>
                         <button @click.prevent="generateOTP" v-if="!otpInput">Generate OTP</button>
                         <input v-if="otpInput" type="text" v-model="enteredOtp" placeholder="Enter OTP">
                         <!-- Error message -->
@@ -53,13 +54,18 @@ export default {
             enteredOtp: '',
             errorMessage: '',
             successMessage: '',
+            profileImg:null,
         }
     },
     methods: {
+        handleProfileImg(e) {
+            this.profileImg = e.target.files[0];
+            console.log(this.profileImg);
+        },
+
         async generateOTP() {
             try {
-            // Simulate sending OTP (in a real application, this would be handled by your backend)
-            // For mock purposes, we'll simply log the OTP to the console
+           
             const randomOTP = Math.floor(100000 + Math.random() * 900000);
             console.log('Generated OTP:', randomOTP);
             this.otpInput = true; // Show OTP input field
@@ -88,17 +94,17 @@ export default {
                 }
                 if (this.enteredOtp == this.otp){
                     // Mock API request to register user (in a real application, this would be handled by your backend)
-                    const newUser = {
-                        name: this.name,
-                        email: this.email,
-                        number: this.number,
-                        password: this.password,
-                    };
-                await axios.post('http://localhost:3000/users', newUser);
+
+                    const formData = new FormData();
+                    formData.append("name",this.name);
+                    formData.append("email",this.email);
+                    formData.append("password",this.password);
+                    formData.append("username",this.email);
+                    formData.append("UserImage", this.profileImg, this.profileImg.name);
+
+                await axios.post('http://localhost:3000/api/user/register', formData);
                 this.clearMessages();
-                // Show success message
-                this.successMessage = 'Registration successful!';
-                // Reset form
+                this.successMessage = 'Registration successful!'; 
                 this.$refs.signupForm.reset();
                 // Redirect to login page
                 this.$router.push({name: 'Login'});

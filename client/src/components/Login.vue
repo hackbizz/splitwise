@@ -38,8 +38,11 @@ import axios from 'axios';
     },
     methods: {
       async login() {
-        let result = await axios.get(
-          `http://localhost:3000/users?email=${this.email}&password=${this.password}`
+        let result = await axios.post(
+          `http://localhost:3000/api/user/login`, {
+            email:this.email,
+            password:this.password,
+          }
         );
   
         if (result.status === 200 && result.data.length > 0) {
