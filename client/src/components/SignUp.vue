@@ -107,7 +107,7 @@ export default {
                 this.successMessage = 'Registration successful!'; 
                 this.$refs.signupForm.reset();
                 // Redirect to login page
-                this.$router.push({name: 'Login'});
+                this.$router.push({name: 'Dashboard'});
                 }
             } catch (error) {
                 // Show error message
