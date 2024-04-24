@@ -25,18 +25,15 @@ export const createUser = async (req, res, next) => {
       next(new ErrorHandler("Please Provide Password", 400));
     }
 
-    
     const hashedPassword = await bcrypt.hash(password, 10);
-    const result2 = await pool.query("SELECT user_id FROM users WHERE email = $1", [
-      email,
-    ]);
+    const result2 = await pool.query("SELECT user_id FROM users WHERE email = $1", [email]);
 
     if (result2.rows.length > 0) {
       next(new ErrorHandler("Same Email is Not Valid", 400));
     }
     const result = await pool.query(
-      "INSERT INTO users ( name, email ,password , username , image) VALUES ($1, $2 ,$3,$4,$5) RETURNING *",
-      [name, email, password , username , image]
+      "INSERT INTO users ( name, email, password, username, image) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+      [name, email, hashedPassword, username, image]
     );
 
     res.status(201).json({
@@ -50,31 +47,25 @@ export const createUser = async (req, res, next) => {
 };
 
 export const login = async (req, res, next) => {
-  
   try {
     const { email, password } = req.body;
-    
+
     if (!email?.trim()) {
-      next(new ErrorHandler("Please Provide Email", 400));
+      return next(new ErrorHandler("Please Provide Email", 400));
     } else if (!password?.trim()) {
-      next(new ErrorHandler("Please Provide Password", 400));
-    }
-    // console.log("type "+typeof(password))
-
-    const result2 = await pool.query("SELECT * FROM users WHERE email = $1", [
-      email,
-    ]);
-
-    // console.log("result2 " + JSON.stringify(result2));
-
-
-    if (result2.rows.length == 0) {
-      next(new ErrorHandler("Email is Not Registred", 400));
+      return next(new ErrorHandler("Please Provide Password", 400));
     }
 
-    
-    if (JSON.stringify(password) != JSON.stringify(result2.rows[0].password)) {
-      next(new ErrorHandler("Password is Incorrect", 400));
+    const result2 = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+
+    if (result2.rows.length === 0) {
+      return next(new ErrorHandler("Email is Not Registered", 400));
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, result2.rows[0].password);
+
+    if (!isPasswordValid) {
+      return next(new ErrorHandler("Password is Incorrect", 400));
     }
 
     let tokens = jwtTokens(result2.rows[0]);
@@ -82,7 +73,7 @@ export const login = async (req, res, next) => {
     res.cookie("refresh_token", tokens.refreshToken, { httpOnly: true });
     res.status(201).json({
       success: true,
-      message: `user login sucessfully`,
+      message: `user login successfully`,
       tokens: tokens,
       userData: result2.rows[0],
     });

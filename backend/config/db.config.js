@@ -9,5 +9,24 @@ const pool = new Pool({
   password: process.env.PASSWORD,
   port: process.env.DB_PORT,
 });
+pool.on("error", (err) => {
+  console.error("Unexpected error on idle client", err);
+  process.exit(-1);
+});
 
-export default pool;  
+pool.connect((err, client, release) => {
+  if (err) {
+    console.error("Error acquiring client", err.stack);
+    process.exit(-1);
+  }
+  client.query("SELECT NOW()", (err, result) => {
+    release();
+    if (err) {
+      console.error("Error executing query", err.stack);
+      process.exit(-1);
+    }
+    console.log("Connected to PostgreSQL database");
+  });
+});
+
+export default pool;
